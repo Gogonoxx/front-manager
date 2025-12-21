@@ -1,0 +1,239 @@
+<div class="front-manager-container">
+  {{#if loading}}
+    <div class="loading-state">
+      <i class="fas fa-spinner fa-spin"></i>
+      <span>Lade Fronten...</span>
+    </div>
+  {{else if error}}
+    <div class="error-state">
+      <i class="fas fa-exclamation-triangle"></i>
+      <span>{{error}}</span>
+      <button type="button" class="refresh-btn" data-action="refresh">
+        <i class="fas fa-sync"></i> Erneut versuchen
+      </button>
+    </div>
+  {{else}}
+    <div class="fronts-tree">
+      {{#each fronts}}
+        <div class="front-item {{#if expanded}}expanded{{/if}}" data-front-id="{{id}}">
+          <div class="front-header" data-action="toggle-front">
+            <i class="fas {{#if expanded}}fa-chevron-down{{else}}fa-chevron-right{{/if}} toggle-icon"></i>
+            <span class="front-type-badge {{type}}">
+              {{#if (eq type "campaign")}}Kampagne{{else}}Adventure{{/if}}
+            </span>
+            <span class="front-name" data-field="name" data-front-id="{{id}}">{{name}}</span>
+            <button type="button" class="edit-btn icon-btn" data-action="edit-front-name" data-front-id="{{id}}" title="Namen bearbeiten">
+              <i class="fas fa-pen"></i>
+            </button>
+          </div>
+
+          {{#if expanded}}
+            <div class="front-content">
+              <!-- Cast Section -->
+              <div class="front-section cast-section">
+                <h4>
+                  <i class="fas fa-users"></i> Cast
+                  <button type="button" class="add-btn icon-btn" data-action="add-cast" data-front-id="{{id}}" title="Cast hinzufügen">
+                    <i class="fas fa-plus"></i>
+                  </button>
+                </h4>
+                <ul class="cast-list editable-list">
+                  {{#each cast}}
+                    <li class="editable-item" data-index="{{@index}}">
+                      <span class="item-text" data-field="cast" data-front-id="{{../id}}" data-index="{{@index}}">{{this}}</span>
+                      <div class="item-actions">
+                        <button type="button" class="edit-btn icon-btn" data-action="edit-cast" data-front-id="{{../id}}" data-index="{{@index}}" title="Bearbeiten">
+                          <i class="fas fa-pen"></i>
+                        </button>
+                        <button type="button" class="delete-btn icon-btn" data-action="delete-cast" data-front-id="{{../id}}" data-index="{{@index}}" title="Löschen">
+                          <i class="fas fa-trash"></i>
+                        </button>
+                      </div>
+                    </li>
+                  {{/each}}
+                </ul>
+              </div>
+
+              <!-- Stakes Section -->
+              <div class="front-section stakes-section">
+                <h4>
+                  <i class="fas fa-question-circle"></i> Stakes
+                  <button type="button" class="add-btn icon-btn" data-action="add-stake" data-front-id="{{id}}" title="Stake hinzufügen">
+                    <i class="fas fa-plus"></i>
+                  </button>
+                </h4>
+                <ul class="stakes-list editable-list">
+                  {{#each stakes}}
+                    <li class="editable-item" data-index="{{@index}}">
+                      <span class="item-text" data-field="stakes" data-front-id="{{../id}}" data-index="{{@index}}">{{this}}</span>
+                      <div class="item-actions">
+                        <button type="button" class="edit-btn icon-btn" data-action="edit-stake" data-front-id="{{../id}}" data-index="{{@index}}" title="Bearbeiten">
+                          <i class="fas fa-pen"></i>
+                        </button>
+                        <button type="button" class="delete-btn icon-btn" data-action="delete-stake" data-front-id="{{../id}}" data-index="{{@index}}" title="Löschen">
+                          <i class="fas fa-trash"></i>
+                        </button>
+                      </div>
+                    </li>
+                  {{/each}}
+                </ul>
+              </div>
+
+              <!-- Dangers Section -->
+              <div class="dangers-section">
+                <h4>
+                  <i class="fas fa-skull-crossbones"></i> Dangers
+                  <button type="button" class="add-btn icon-btn" data-action="add-danger" data-front-id="{{id}}" title="Danger hinzufügen">
+                    <i class="fas fa-plus"></i>
+                  </button>
+                </h4>
+                {{#each dangers}}
+                  <div class="danger-item {{#if expanded}}expanded{{/if}}" data-danger-id="{{id}}">
+                    <div class="danger-header">
+                      <span class="toggle-area" data-action="toggle-danger" data-front-id="{{../id}}" data-danger-id="{{id}}">
+                        <i class="fas {{#if expanded}}fa-chevron-down{{else}}fa-chevron-right{{/if}} toggle-icon"></i>
+                      </span>
+                      <span class="danger-name" data-field="danger-name" data-danger-id="{{id}}">{{name}}</span>
+                      <span class="danger-type-badge">{{dangerType}}</span>
+                      <div class="danger-header-actions">
+                        <button type="button" class="edit-btn icon-btn" data-action="edit-danger" data-danger-id="{{id}}" title="Danger bearbeiten">
+                          <i class="fas fa-pen"></i>
+                        </button>
+                        <button type="button" class="delete-btn icon-btn" data-action="delete-danger" data-front-id="{{../id}}" data-danger-id="{{id}}" title="Danger löschen">
+                          <i class="fas fa-trash"></i>
+                        </button>
+                      </div>
+                    </div>
+
+                    {{#if expanded}}
+                      <div class="danger-content">
+                        <div class="danger-meta">
+                          <div class="meta-row editable-row">
+                            <span class="meta-label">Impulse:</span>
+                            <span class="meta-value" data-field="impulse" data-danger-id="{{id}}">{{impulse}}</span>
+                            <button type="button" class="edit-btn icon-btn small" data-action="edit-impulse" data-danger-id="{{id}}" title="Bearbeiten">
+                              <i class="fas fa-pen"></i>
+                            </button>
+                          </div>
+                          <div class="meta-row editable-row">
+                            <span class="meta-label">Doom:</span>
+                            <span class="meta-value doom" data-field="doom" data-danger-id="{{id}}">{{impendingDoom}}</span>
+                            <button type="button" class="edit-btn icon-btn small" data-action="edit-doom" data-danger-id="{{id}}" title="Bearbeiten">
+                              <i class="fas fa-pen"></i>
+                            </button>
+                          </div>
+                        </div>
+
+                        <!-- Grim Portents -->
+                        <div class="portents-section">
+                          <h5>
+                            <i class="fas fa-hourglass-half"></i> Grim Portents
+                            <button type="button" class="add-btn icon-btn" data-action="add-portent" data-danger-id="{{id}}" title="Portent hinzufügen">
+                              <i class="fas fa-plus"></i>
+                            </button>
+                          </h5>
+                          <ul class="portents-list">
+                            {{#each grimPortents}}
+                              <li class="portent-item {{#if completed}}completed{{/if}}">
+                                <label class="portent-checkbox">
+                                  <input type="checkbox"
+                                         {{#if completed}}checked{{/if}}
+                                         data-action="toggle-portent"
+                                         data-danger-id="{{../id}}"
+                                         data-portent-id="{{id}}">
+                                  <span class="portent-text" data-field="portent" data-danger-id="{{../id}}" data-portent-id="{{id}}">{{text}}</span>
+                                </label>
+                                <div class="item-actions">
+                                  <button type="button" class="edit-btn icon-btn small" data-action="edit-portent" data-danger-id="{{../id}}" data-portent-id="{{id}}" title="Bearbeiten">
+                                    <i class="fas fa-pen"></i>
+                                  </button>
+                                  <button type="button" class="delete-btn icon-btn small" data-action="delete-portent" data-danger-id="{{../id}}" data-portent-id="{{id}}" title="Löschen">
+                                    <i class="fas fa-trash"></i>
+                                  </button>
+                                </div>
+                              </li>
+                            {{/each}}
+                          </ul>
+                        </div>
+
+                        <!-- Secrets -->
+                        <div class="secrets-section">
+                          <h5>
+                            <i class="fas fa-key"></i> Secrets
+                            <button type="button" class="add-btn icon-btn" data-action="add-secret" data-danger-id="{{id}}" title="Secret hinzufügen">
+                              <i class="fas fa-plus"></i>
+                            </button>
+                          </h5>
+                          <ul class="secrets-list">
+                            {{#each secrets}}
+                              <li class="secret-item xp-{{xp}} {{#if revealed}}revealed{{/if}}">
+                                <label class="secret-checkbox">
+                                  <input type="checkbox"
+                                         {{#if revealed}}checked{{/if}}
+                                         data-action="toggle-secret"
+                                         data-danger-id="{{../id}}"
+                                         data-secret-id="{{id}}">
+                                  <span class="secret-xp">{{xp}}xp</span>
+                                  <span class="secret-text" data-field="secret" data-danger-id="{{../id}}" data-secret-id="{{id}}">{{text}}</span>
+                                  {{#if revealedAt}}
+                                    <span class="revealed-date">({{revealedAt}})</span>
+                                  {{/if}}
+                                </label>
+                                <div class="item-actions">
+                                  <button type="button" class="edit-btn icon-btn small" data-action="edit-secret" data-danger-id="{{../id}}" data-secret-id="{{id}}" title="Bearbeiten">
+                                    <i class="fas fa-pen"></i>
+                                  </button>
+                                  <button type="button" class="delete-btn icon-btn small" data-action="delete-secret" data-danger-id="{{../id}}" data-secret-id="{{id}}" title="Löschen">
+                                    <i class="fas fa-trash"></i>
+                                  </button>
+                                </div>
+                              </li>
+                            {{/each}}
+                          </ul>
+                        </div>
+
+                        <!-- Locations -->
+                        <div class="locations-section">
+                          <h5>
+                            <i class="fas fa-map-marker-alt"></i> Fantastische Locations
+                            <button type="button" class="add-btn icon-btn" data-action="add-location" data-danger-id="{{id}}" title="Location hinzufügen">
+                              <i class="fas fa-plus"></i>
+                            </button>
+                          </h5>
+                          <ul class="locations-list editable-list">
+                            {{#each locations}}
+                              <li class="editable-item" data-index="{{@index}}">
+                                <span class="item-text" data-field="location" data-danger-id="{{../id}}" data-index="{{@index}}">{{this}}</span>
+                                <div class="item-actions">
+                                  <button type="button" class="edit-btn icon-btn small" data-action="edit-location" data-danger-id="{{../id}}" data-index="{{@index}}" title="Bearbeiten">
+                                    <i class="fas fa-pen"></i>
+                                  </button>
+                                  <button type="button" class="delete-btn icon-btn small" data-action="delete-location" data-danger-id="{{../id}}" data-index="{{@index}}" title="Löschen">
+                                    <i class="fas fa-trash"></i>
+                                  </button>
+                                </div>
+                              </li>
+                            {{/each}}
+                          </ul>
+                        </div>
+                      </div>
+                    {{/if}}
+                  </div>
+                {{/each}}
+              </div>
+            </div>
+          {{/if}}
+        </div>
+      {{/each}}
+    </div>
+
+    <div class="front-manager-footer">
+      <button type="button" class="add-front-btn" data-action="add-front">
+        <i class="fas fa-plus"></i> Neue Front
+      </button>
+      <button type="button" class="refresh-btn" data-action="refresh">
+        <i class="fas fa-sync"></i> Aktualisieren
+      </button>
+    </div>
+  {{/if}}
+</div>

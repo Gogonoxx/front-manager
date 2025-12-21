@@ -1,0 +1,22 @@
+{
+  "FRONT_MANAGER": {
+    "Title": "Front Manager",
+    "Loading": "Lade Fronten...",
+    "Refresh": "Aktualisieren",
+    "Campaign": "Kampagne",
+    "Adventure": "Adventure",
+    "Cast": "Cast",
+    "Stakes": "Stakes",
+    "PlayerHooks": "Spielerbezug",
+    "Dangers": "Dangers",
+    "Impulse": "Impulse",
+    "Doom": "Doom",
+    "GrimPortents": "Grim Portents",
+    "Secrets": "Secrets",
+    "Locations": "Fantastische Locations",
+    "SecretRevealed": "Secret gelüftet",
+    "SecretReset": "Secret zurückgesetzt",
+    "FrontsUpdated": "Fronten aktualisiert",
+    "ConnectionFailed": "Verbindung zum Server fehlgeschlagen"
+  }
+}

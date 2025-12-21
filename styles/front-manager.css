@@ -1,0 +1,687 @@
+/* ============================================================================
+   PF2E Front Manager - Styles
+   Optimiert für dunklen PF2E-Hintergrund
+   ============================================================================ */
+
+/* Container */
+.front-manager-container {
+  padding: 0.5rem;
+  height: 100%;
+  overflow-y: auto;
+}
+
+/* Loading & Error States */
+.loading-state,
+.error-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  gap: 1rem;
+  color: #ccc;
+}
+
+.loading-state i,
+.error-state i {
+  font-size: 2rem;
+}
+
+.error-state {
+  color: #ff6b6b;
+}
+
+.error-state i {
+  color: #ff6b6b;
+}
+
+/* Fronts Tree */
+.fronts-tree {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Front Item */
+.front-item {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.front-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+  background: linear-gradient(to bottom, rgba(90, 20, 20, 0.4), rgba(90, 20, 20, 0.2));
+  border-bottom: 1px solid transparent;
+  transition: background 0.2s ease;
+}
+
+.front-item.expanded .front-header {
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+.front-header:hover {
+  background: linear-gradient(to bottom, rgba(90, 20, 20, 0.5), rgba(90, 20, 20, 0.3));
+}
+
+.front-header .toggle-icon {
+  width: 12px;
+  color: #ccc;
+  transition: transform 0.2s ease;
+}
+
+.front-type-badge {
+  font-size: 0.7rem;
+  padding: 0.15rem 0.4rem;
+  border-radius: 3px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.front-type-badge.campaign {
+  background: #8b2020;
+  color: #fff;
+}
+
+.front-type-badge.adventure {
+  background: #1a5a7a;
+  color: #fff;
+}
+
+.front-name {
+  flex: 1;
+  font-weight: bold;
+  color: #f0e6d2;
+}
+
+/* Front Content */
+.front-content {
+  padding: 0.75rem;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.front-section {
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.15);
+}
+
+.front-section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.front-section h4 {
+  margin: 0 0 0.5rem 0;
+  font-size: 0.85rem;
+  color: #e8a87c;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.front-section h4 i {
+  font-size: 0.8rem;
+}
+
+.front-section ul {
+  margin: 0;
+  padding-left: 1.2rem;
+  font-size: 0.85rem;
+}
+
+/* WICHTIG: Helle Schriftfarbe für Cast und Stakes */
+.front-section li {
+  margin-bottom: 0.25rem;
+  color: #e0d6c2;
+}
+
+/* Dangers Section */
+.dangers-section h4 {
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+  color: #e8a87c;
+}
+
+/* Danger Item */
+.danger-item {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  margin-bottom: 0.5rem;
+}
+
+.danger-item:last-child {
+  margin-bottom: 0;
+}
+
+.danger-header {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.6rem;
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.2);
+  transition: background 0.2s ease;
+}
+
+.danger-item.expanded .danger-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.danger-header:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.danger-header .toggle-icon {
+  width: 10px;
+  font-size: 0.75rem;
+  color: #aaa;
+}
+
+.danger-name {
+  flex: 1;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #f0e6d2;
+}
+
+.danger-type-badge {
+  font-size: 0.65rem;
+  padding: 0.1rem 0.3rem;
+  background: rgba(139, 32, 32, 0.5);
+  color: #f0c8c8;
+  border-radius: 2px;
+}
+
+/* Danger Content */
+.danger-content {
+  padding: 0.6rem;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.danger-meta {
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+.meta-row {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+  font-size: 0.8rem;
+}
+
+.meta-label {
+  font-weight: 600;
+  color: #aaa;
+  min-width: 60px;
+}
+
+.meta-value {
+  color: #e0d6c2;
+}
+
+.meta-value.doom {
+  color: #ff6b6b;
+  font-weight: 600;
+}
+
+/* Portents Section */
+.portents-section,
+.secrets-section,
+.locations-section {
+  margin-top: 0.75rem;
+}
+
+.portents-section h5,
+.secrets-section h5,
+.locations-section h5 {
+  margin: 0 0 0.4rem 0;
+  font-size: 0.8rem;
+  color: #ccc;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.portents-section h5 i,
+.secrets-section h5 i,
+.locations-section h5 i {
+  font-size: 0.75rem;
+}
+
+.portents-list,
+.secrets-list,
+.locations-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Portent Items */
+.portent-item {
+  margin-bottom: 0.3rem;
+  padding: 0.2rem 0.4rem;
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 2px;
+}
+
+.portent-checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.4rem;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.portent-checkbox input[type="checkbox"] {
+  margin-top: 0.15rem;
+  accent-color: #5a8a5a;
+}
+
+.portent-text {
+  color: #e0d6c2;
+}
+
+.portent-item.completed .portent-text {
+  color: #888;
+  text-decoration: line-through;
+}
+
+/* Secret Items */
+.secret-item {
+  margin-bottom: 0.4rem;
+  padding: 0.3rem 0.5rem;
+  border-radius: 3px;
+  border-left: 3px solid;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.secret-item.xp-20 {
+  border-left-color: #4caf50;
+  background: rgba(76, 175, 80, 0.15);
+}
+
+.secret-item.xp-30 {
+  border-left-color: #ff9800;
+  background: rgba(255, 152, 0, 0.15);
+}
+
+.secret-item.xp-50 {
+  border-left-color: #f44336;
+  background: rgba(244, 67, 54, 0.15);
+}
+
+/* Revealed secrets - WICHTIG: Gut lesbar auch wenn abgehakt */
+.secret-item.revealed {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.secret-item.revealed.xp-20 {
+  border-left-color: #2e7d32;
+}
+
+.secret-item.revealed.xp-30 {
+  border-left-color: #e65100;
+}
+
+.secret-item.revealed.xp-50 {
+  border-left-color: #b71c1c;
+}
+
+.secret-checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.4rem;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.secret-checkbox input[type="checkbox"] {
+  margin-top: 0.15rem;
+  accent-color: #5a8a5a;
+}
+
+.secret-xp {
+  font-weight: bold;
+  min-width: 35px;
+}
+
+.secret-item.xp-20 .secret-xp { color: #81c784; }
+.secret-item.xp-30 .secret-xp { color: #ffb74d; }
+.secret-item.xp-50 .secret-xp { color: #e57373; }
+
+.secret-text {
+  flex: 1;
+  color: #e0d6c2;
+}
+
+/* Revealed secret text - durchgestrichen aber LESBAR */
+.secret-item.revealed .secret-text {
+  text-decoration: line-through;
+  color: #aaa;
+}
+
+.revealed-date {
+  font-size: 0.7rem;
+  color: #888;
+  font-style: italic;
+  margin-left: 0.5rem;
+}
+
+/* Locations */
+.locations-list li {
+  font-size: 0.8rem;
+  margin-bottom: 0.25rem;
+  padding: 0.2rem 0.5rem;
+  border-left: 2px solid #4a90a4;
+  color: #e0d6c2;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+/* Footer */
+.front-manager-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 0.75rem;
+  margin-top: 0.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.refresh-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.8rem;
+  background: linear-gradient(to bottom, #5a1414, #400e0e);
+  color: #fff;
+  border: 1px solid #300a0a;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.2s ease;
+}
+
+.refresh-btn:hover {
+  background: linear-gradient(to bottom, #6a1a1a, #5a1414);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.refresh-btn i {
+  font-size: 0.8rem;
+}
+
+/* Scrollbar styling */
+.front-manager-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.front-manager-container::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.front-manager-container::-webkit-scrollbar-thumb {
+  background: rgba(139, 32, 32, 0.5);
+  border-radius: 4px;
+}
+
+.front-manager-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(139, 32, 32, 0.7);
+}
+
+/* ============================================================================
+   Edit Mode Styles
+   ============================================================================ */
+
+/* Icon Buttons (Edit, Delete, Add) */
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  cursor: pointer;
+  opacity: 0;
+  transition: all 0.2s ease;
+  color: #aaa;
+}
+
+.icon-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+.icon-btn.small {
+  width: 20px;
+  height: 20px;
+  font-size: 0.7rem;
+}
+
+/* Show buttons on hover of parent */
+.front-header:hover .icon-btn,
+.danger-header:hover .icon-btn,
+.editable-item:hover .icon-btn,
+.editable-row:hover .icon-btn,
+.portent-item:hover .icon-btn,
+.secret-item:hover .icon-btn {
+  opacity: 1;
+}
+
+/* Edit button - yellow */
+.edit-btn:hover {
+  color: #ffc107;
+  border-color: #ffc107;
+}
+
+/* Delete button - red */
+.delete-btn:hover {
+  color: #dc3545;
+  border-color: #dc3545;
+}
+
+/* Add button - green, always visible in headers */
+.add-btn {
+  color: #4caf50;
+  opacity: 0.6;
+}
+
+.add-btn:hover {
+  color: #81c784;
+  border-color: #4caf50;
+  opacity: 1;
+}
+
+h4 .add-btn,
+h5 .add-btn {
+  margin-left: 0.5rem;
+}
+
+/* Editable items layout */
+.editable-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.editable-item .item-text {
+  flex: 1;
+}
+
+.item-actions {
+  display: flex;
+  gap: 0.25rem;
+  flex-shrink: 0;
+}
+
+/* Editable row (for meta fields) */
+.editable-row {
+  display: flex;
+  align-items: center;
+}
+
+.editable-row .meta-value {
+  flex: 1;
+}
+
+.editable-row .icon-btn {
+  margin-left: 0.5rem;
+}
+
+/* Danger header layout */
+.danger-header {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.6rem;
+  cursor: default;
+  background: rgba(0, 0, 0, 0.2);
+  transition: background 0.2s ease;
+}
+
+.danger-header .toggle-area {
+  cursor: pointer;
+  padding: 0.2rem;
+}
+
+.danger-header-actions {
+  display: flex;
+  gap: 0.25rem;
+  margin-left: auto;
+}
+
+/* Section headers with add buttons */
+.front-section h4,
+.portents-section h5,
+.secrets-section h5,
+.locations-section h5 {
+  display: flex;
+  align-items: center;
+}
+
+/* Portent and Secret item layout */
+.portent-item,
+.secret-item {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.portent-checkbox,
+.secret-checkbox {
+  flex: 1;
+}
+
+/* Add Front button */
+.add-front-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.8rem;
+  background: linear-gradient(to bottom, #1a5a1a, #0e400e);
+  color: #fff;
+  border: 1px solid #0a300a;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.2s ease;
+}
+
+.add-front-btn:hover {
+  background: linear-gradient(to bottom, #2a6a2a, #1a5a1a);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.front-manager-footer {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 0.75rem;
+  margin-top: 0.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Input fields for inline editing */
+.inline-edit-input {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(139, 32, 32, 0.5);
+  border-radius: 3px;
+  color: #f0e6d2;
+  padding: 0.25rem 0.5rem;
+  font-size: inherit;
+  font-family: inherit;
+  width: 100%;
+}
+
+.inline-edit-input:focus {
+  outline: none;
+  border-color: #8b2020;
+  box-shadow: 0 0 3px rgba(139, 32, 32, 0.5);
+}
+
+/* Modal/Dialog styles */
+.front-edit-dialog {
+  background: #1a1a1a;
+  border: 1px solid rgba(139, 32, 32, 0.5);
+  border-radius: 6px;
+  padding: 1rem;
+}
+
+.front-edit-dialog .form-group {
+  margin-bottom: 0.75rem;
+}
+
+.front-edit-dialog label {
+  display: block;
+  margin-bottom: 0.25rem;
+  color: #e8a87c;
+  font-size: 0.85rem;
+}
+
+.front-edit-dialog input,
+.front-edit-dialog textarea,
+.front-edit-dialog select {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+  color: #f0e6d2;
+  padding: 0.4rem 0.6rem;
+  font-size: 0.9rem;
+}
+
+.front-edit-dialog textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.front-edit-dialog .dialog-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.front-edit-dialog .btn-save {
+  background: linear-gradient(to bottom, #5a8a5a, #3a6a3a);
+  color: #fff;
+  border: 1px solid #2a5a2a;
+}
+
+.front-edit-dialog .btn-cancel {
+  background: linear-gradient(to bottom, #5a5a5a, #3a3a3a);
+  color: #fff;
+  border: 1px solid #2a2a2a;
+}
