@@ -182,6 +182,70 @@ class FrontManagerApp extends HandlebarsApplicationMixin(ApplicationV2) {
     }
   }
 
+  async #resolveFront(frontId) {
+    try {
+      const response = await fetch(`${API_BASE}/api/fronts/front/resolve`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ frontId })
+      });
+
+      if (!response.ok) {
+        throw new Error(`Server error: ${response.status}`);
+      }
+
+      const result = await response.json();
+      console.log('[FrontManager] Front resolved:', result);
+
+      // Refresh data
+      await this.#fetchFronts();
+      this.render();
+
+      // Show notification
+      const front = result.front;
+      if (front.resolved) {
+        ui.notifications.info(`Front als abgeschlossen markiert`);
+      } else {
+        ui.notifications.info(`Front wieder geöffnet`);
+      }
+    } catch (err) {
+      console.error('[FrontManager] Failed to resolve front:', err);
+      ui.notifications.error(`Fehler: ${err.message}`);
+    }
+  }
+
+  async #resolveDanger(dangerId) {
+    try {
+      const response = await fetch(`${API_BASE}/api/fronts/danger/resolve`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ dangerId })
+      });
+
+      if (!response.ok) {
+        throw new Error(`Server error: ${response.status}`);
+      }
+
+      const result = await response.json();
+      console.log('[FrontManager] Danger resolved:', result);
+
+      // Refresh data
+      await this.#fetchFronts();
+      this.render();
+
+      // Show notification
+      const danger = result.danger;
+      if (danger.resolved) {
+        ui.notifications.info(`Danger als abgeschlossen markiert`);
+      } else {
+        ui.notifications.info(`Danger wieder geöffnet`);
+      }
+    } catch (err) {
+      console.error('[FrontManager] Failed to resolve danger:', err);
+      ui.notifications.error(`Fehler: ${err.message}`);
+    }
+  }
+
   // -------------------------------------------------------------------------
   // Helper Methods
   // -------------------------------------------------------------------------
@@ -279,6 +343,26 @@ class FrontManagerApp extends HandlebarsApplicationMixin(ApplicationV2) {
         const dangerId = ev.currentTarget.dataset.dangerId;
         const portentId = ev.currentTarget.dataset.portentId;
         this.#togglePortent(dangerId, portentId);
+      });
+    });
+
+    // Resolve front
+    html.querySelectorAll('[data-action="resolve-front"]').forEach(el => {
+      el.addEventListener('click', ev => {
+        ev.preventDefault();
+        ev.stopPropagation();
+        const frontId = ev.currentTarget.dataset.frontId;
+        this.#resolveFront(frontId);
+      });
+    });
+
+    // Resolve danger
+    html.querySelectorAll('[data-action="resolve-danger"]').forEach(el => {
+      el.addEventListener('click', ev => {
+        ev.preventDefault();
+        ev.stopPropagation();
+        const dangerId = ev.currentTarget.dataset.dangerId;
+        this.#resolveDanger(dangerId);
       });
     });
 

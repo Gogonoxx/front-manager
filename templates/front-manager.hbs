@@ -15,15 +15,21 @@
   {{else}}
     <div class="fronts-tree">
       {{#each fronts}}
-        <div class="front-item {{#if expanded}}expanded{{/if}}" data-front-id="{{id}}">
+        <div class="front-item {{#if expanded}}expanded{{/if}} {{#if resolved}}resolved{{/if}}" data-front-id="{{id}}">
           <div class="front-header" data-action="toggle-front">
             <i class="fas {{#if expanded}}fa-chevron-down{{else}}fa-chevron-right{{/if}} toggle-icon"></i>
             <span class="front-type-badge {{type}}">
               {{#if (eq type "campaign")}}Kampagne{{else}}Adventure{{/if}}
             </span>
             <span class="front-name" data-field="name" data-front-id="{{id}}">{{name}}</span>
+            {{#if resolved}}
+              <span class="resolved-badge"><i class="fas fa-check"></i> Abgeschlossen{{#if resolvedAt}} ({{resolvedAt}}){{/if}}</span>
+            {{/if}}
             <button type="button" class="edit-btn icon-btn" data-action="edit-front-name" data-front-id="{{id}}" title="Namen bearbeiten">
               <i class="fas fa-pen"></i>
+            </button>
+            <button type="button" class="resolve-btn icon-btn" data-action="resolve-front" data-front-id="{{id}}" title="{{#if resolved}}Wieder öffnen{{else}}Als abgeschlossen markieren{{/if}}">
+              <i class="fas {{#if resolved}}fa-lock-open{{else}}fa-check-circle{{/if}}"></i>
             </button>
           </div>
 
@@ -88,14 +94,21 @@
                   </button>
                 </h4>
                 {{#each dangers}}
-                  <div class="danger-item {{#if expanded}}expanded{{/if}}" data-danger-id="{{id}}">
+                  <div class="danger-item {{#if expanded}}expanded{{/if}} {{#if resolved}}resolved{{/if}}" data-danger-id="{{id}}">
                     <div class="danger-header">
                       <span class="toggle-area" data-action="toggle-danger" data-front-id="{{../id}}" data-danger-id="{{id}}">
                         <i class="fas {{#if expanded}}fa-chevron-down{{else}}fa-chevron-right{{/if}} toggle-icon"></i>
                       </span>
                       <span class="danger-name" data-field="danger-name" data-danger-id="{{id}}">{{name}}</span>
-                      <span class="danger-type-badge">{{dangerType}}</span>
+                      {{#if resolved}}
+                        <span class="resolved-badge"><i class="fas fa-check"></i> Abgeschlossen{{#if resolvedAt}} ({{resolvedAt}}){{/if}}</span>
+                      {{else}}
+                        <span class="danger-type-badge">{{dangerType}}</span>
+                      {{/if}}
                       <div class="danger-header-actions">
+                        <button type="button" class="resolve-btn icon-btn" data-action="resolve-danger" data-danger-id="{{id}}" title="{{#if resolved}}Wieder öffnen{{else}}Als abgeschlossen markieren{{/if}}">
+                          <i class="fas {{#if resolved}}fa-lock-open{{else}}fa-check-circle{{/if}}"></i>
+                        </button>
                         <button type="button" class="edit-btn icon-btn" data-action="edit-danger" data-danger-id="{{id}}" title="Danger bearbeiten">
                           <i class="fas fa-pen"></i>
                         </button>
